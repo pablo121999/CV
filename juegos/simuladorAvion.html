@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de avión</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/welcome.css">
+    <link rel="stylesheet" href="../css/simuladorAvion.css">
+</head>
+
+<body>
+    <div class="profile-card shadow-lg bg-white p-4">
+        <!-- NAVBAR dentro de la card -->
+        <nav class="navbar navbar-expand-lg  mb-4">
+
+            <div class="container-fluid">
+                <!-- Logo y nombre -->
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 40px; height: 40px">
+                        <strong>P</strong>
+                    </div>
+                    <span class="ms-2 fw-bold text-dark">Pablo Andres</span>
+                </a>
+
+                <!-- Botón toggle para pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-list text-primary fs-2"></i>
+                </button>
+
+                <!-- Contenido colapsable -->
+                <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary fw-semibold" href="#">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary fw-semibold" href="#">Resume</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary fw-semibold" href="#">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary fw-semibold" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid " style="margin-top: 40px;">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="../index.html">Inicio</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <a href="../juegos/simuladorAvion.html">Simulador de avión</a>
+                </li>
+            </ol>
+        </div>
+
+        <h4 class="text-center" style="margin-top: 30px; margin-bottom: 20px;">
+            <strong>Simulador de avión</strong>
+        </h4>
+
+
+        <div id="simulator">
+            <div id="hud">
+                <div class="indicator">Velocidad: <span id="speed">0</span> km/h</div>
+                <div class="indicator">Altitud: <span id="altitude">0</span> m</div>
+                <div class="indicator">Dirección: <span id="direction">0</span>°</div>
+            </div>
+            <div id="horizon">
+                <div id="sky"></div>
+                <div id="ground"></div>
+                <div id="contenerplane">
+                    <img id="nube1" src="../img/nube.png" height="50px" width="150px" />
+
+                    <img id="nube2" src="../img/nube.png" height="50px" width="150px" />
+
+                    <img id="nube3" src="../img/nube.png" height="50px" width="150px" />
+
+                    <img id="nube4" src="../img/nube.png" height="50px" width="150px" />
+
+                    <img id="nube5" src="../img/nube.png" height="50px" width="150px" />
+
+                    <div style="text-align: center;">
+                        <img id="plane" src="../img/avionsimulador.png" height="70px" width="150px" />
+                    </div>
+
+
+                    <div class="obstacle" style="bottom: 50%; left: 100%;"></div>
+
+                    <!--   <img id="bloque" src="{{ asset('img/bloque.png') }}" style="center;" height="70px"
+                        width="150px" /> -->
+                </div>
+
+                <button id="pauseBtn">⏸️ Pausar</button>
+
+
+                <audio id="audioPlayer" controls autoplay loop>
+                    <source src="../audio/avion.mp3" type="audio/mpeg">
+                    Tu navegador no soporta la reproducción de audio.
+                </audio>
+
+            </div>
+            <div id="instructions">
+                Usa las flechas para controlar el avión:
+                <ul>
+                    <li>Arriba: Subir</li>
+                    <li>Abajo: Bajar</li>
+                    <li>Izquierda: Girar a la izquierda</li>
+                    <li>Derecha: Girar a la derecha</li>
+                    <li>Espacio: Velocidad</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    const imagen = "../img/bloque.png";
+</script>
+
+<script src="../js/simuladorAvion.js"></script>
+
+<div id="footer"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('layouts/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar layouts/footer.html');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar layouts/footer.html:', error);
+            });
+    });
+</script>
