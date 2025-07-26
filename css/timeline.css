@@ -52,12 +52,12 @@
   position: relative;
   color: #fff;
   overflow: hidden;
-  background-size: cover; 
+  background-size: cover;
   background-size: contain;
   background-repeat: no-repeat;
-/*  background-size: 100% 100%;*/   
-/* Se ajusta exactamente al tamaño del contenedor  */
-/*  background-repeat: no-repeat; */
+  /*  background-size: 100% 100%;*/
+  /* Se ajusta exactamente al tamaño del contenedor  */
+  /*  background-repeat: no-repeat; */
   background-position: center center;
 }
 
@@ -69,8 +69,8 @@
   bottom: -10%;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 254, 254, 0.7);
-  box-shadow: -230px 0 150px 60vw rgba(0, 0, 0, 0.7);
+  background-color: #ffffff;
+  box-shadow: -230px 0 250px 40vw #ffffff;
   border-radius: 100%;
 }
 
@@ -204,7 +204,7 @@
   color: black !important;
   left: 85%;
 
-  background-color: #ffffff; 
+  background-color: #ffffff;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -247,12 +247,13 @@
     margin-top: auto;
   }
 
-  .timeline .swiper-slide .timeline-year {
+  .timeline .swiper-slide {
     display: block;
     /* Asegura que el elemento ocupe toda la línea */
     margin-bottom: 20px;
     /* Ajusta este valor para definir el espacio */
     font-size: 32px;
+
   }
 
   .timeline .swiper-slide .timeline-title {
