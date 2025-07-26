@@ -69,8 +69,8 @@
   bottom: -10%;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
-  box-shadow: -230px 0 250px 40vw #ffffff;
+  background-color: rgba(255, 254, 254, 0.7);
+  box-shadow: -30px 0 150px 50vw rgba(255, 254, 254, 0.7);
   border-radius: 100%;
 }
 
@@ -234,7 +234,7 @@
     bottom: -8%;
     width: 240px;
     height: 50%;
-    box-shadow: -230px 0 150px 50vw rgba(250, 246, 246, 0.7);
+    box-shadow: -230px 0 50px 20vw #ffffff;
   }
 
   .timeline .swiper-slide-content {
@@ -247,7 +247,7 @@
     margin-top: auto;
   }
 
-  .timeline .swiper-slide {
+  .timeline .swiper-slide .timeline-year {
     display: block;
     /* Asegura que el elemento ocupe toda la línea */
     margin-bottom: 20px;
@@ -327,7 +327,7 @@
     bottom: -12%;
     width: 240px;
     height: 50%;
-    box-shadow: -30px 0 150px 50vw rgba(245, 245, 245, 0.5);
+    box-shadow: -380px 0 150px 20vw #ffffff;
   }
 
   .timeline .swiper-slide-content {
