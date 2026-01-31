@@ -1,0 +1,83 @@
+/* Altura fija del carrusel */
+.carousel-custom {
+    height: 600px;
+}
+
+/* Todas las slides misma altura */
+.carousel-custom .carousel-item {
+    height: 600px;
+}
+
+/* Imágenes */
+.carousel-img {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 🔥 Borde redondeado REAL */
+.rounded-carousel {
+    border-radius: 20px;
+    overflow: hidden;
+    /* IMPORTANTÍSIMO */
+}
+
+/* Botones */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1;
+}
+
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+/* diseño skills */
+
+.skills-card {
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skill-item {
+    padding: 20px 10px;
+    transition: all 0.3s ease;
+}
+
+.skill-item i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+    color: #495057;
+}
+
+.skill-item span {
+    font-weight: 600;
+    font-size: 14px;
+    color: #212529;
+}
+
+.skill-item small {
+    font-weight: 400;
+    color: #6c757d;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+}
+
+.skill-item:hover i {
+    color: #0d6efd;
+    /* azul Bootstrap */
+}

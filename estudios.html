@@ -1,39 +1,92 @@
-<div class="row">
-    <div class="col-md-4">
-        <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-            <div class="card-body">
-                <h5 class="card-title"><strong>Ingeniero de Sistemas</strong></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                <p class="card-text">
-                    2022
-                </p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="profile-card shadow-lg bg-white p-4">
+    <div id="header"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('layouts/header.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar layouts/header.html');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error al cargar layouts/header.html:', error);
+                });
+        });
+    </script>
+
+    <h5 class="text-center mt-5 mb-4"><strong>Estudios</strong></h5>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Ingeniero de Sistemas</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
+                    <p class="card-text">
+                        2022
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="col-md-4">
-        <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-            <div class="card-body">
-                <h5 class="card-title"><strong>Tecnólogo en Gestión Informática</strong></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                <p class="card-text">
-                    2021
-                </p>
+        <div class="col-md-4">
+            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Tecnólogo en Gestión Informática</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
+                    <p class="card-text">
+                        2021
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-4">
-        <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2;  max-width: 50rem;">
-            <div class="card-body">
-                <h5 class="card-title"><strong>Técnico profesional en soluciones web</strong></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                <p class="card-text">
-                    2019
-                </p>
+        <div class="col-md-4">
+            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2;  max-width: 50rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Técnico profesional en soluciones web</strong></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
+                    <p class="card-text">
+                        2019
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
+    <div class="mt-5" id="footer"></div>
 </div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('layouts/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar layouts/footer.html');
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+
+                // 👇 IMPORTANTE: ejecutar después de cargar el footer
+                document.getElementById('year').textContent =
+                    new Date().getFullYear();
+            })
+            .catch(error => {
+                console.error('Error al cargar layouts/footer.html:', error);
+            });
+    });
+</script>

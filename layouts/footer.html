@@ -38,7 +38,7 @@
 </style>
 
 
-<footer class="footer text-center" style="margin-top: 20px;">
+<footer class="card   footer text-center  mt-4" style="border-radius: 20px;">
     <div class="container mb-3">
         <a href="mailto:pabloaroca78@gmail.com" class="social-icon google"><i class="fab fa-google"></i></a>
         <a href="https://www.linkedin.com/in/pabloaroca/" class="social-icon linkedin" target="_blank"><i
@@ -51,8 +51,17 @@
     </div>
 
     <div>
-        © 2025 Copyright:
-        <a class="text-decoration-none fw-bold" id="Copyright" href="https://pablo121999.github.io/CV/">https://pablo121999.github.io/CV/</a>
+        © <span id="year"></span> Copyright:
+        <a class="text-decoration-none fw-bold" href="https://pablo121999.github.io/CV/" target="_blank">
+            https://pablo121999.github.io/CV/
+        </a>
     </div>
-    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+
 </footer>
