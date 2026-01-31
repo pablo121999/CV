@@ -5,68 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de avión</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../css/welcome.css">
+
     <link rel="stylesheet" href="../css/simuladorAvion.css">
 </head>
 
 <body>
     <div class="profile-card shadow-lg bg-white p-4">
         <!-- NAVBAR dentro de la card -->
-        <nav class="navbar navbar-expand-lg  mb-4">
+        <div id="header"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('../layouts/header.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('No se pudo cargar layouts/header.html');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('header').innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.error('Error al cargar layouts/header.html:', error);
+                    });
+            });
+        </script>
 
-            <div class="container-fluid">
-                <!-- Logo y nombre -->
-                <a class="navbar-brand d-flex align-items-center" href="#">
-                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-                        style="width: 40px; height: 40px">
-                        <strong>P</strong>
-                    </div>
-                    <span class="ms-2 fw-bold text-dark">Pablo Andres</span>
-                </a>
-
-                <!-- Botón toggle para pantallas pequeñas -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-list text-primary fs-2"></i>
-                </button>
-
-                <!-- Contenido colapsable -->
-                <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary fw-semibold" href="#">About Me</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary fw-semibold" href="#">Resume</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary fw-semibold" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-secondary fw-semibold" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container-fluid " style="margin-top: 40px;">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="../index.html">Inicio</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    <a href="../juegos/simuladorAvion.html">Simulador de avión</a>
-                </li>
-            </ol>
-        </div>
-
-        <h4 class="text-center" style="margin-top: 30px; margin-bottom: 20px;">
-            <strong>Simulador de avión</strong>
-        </h4>
-
+        <h5 class="text-center mt-5 mb-4"><strong>Simulador de avión</strong></h5>
 
         <div id="simulator">
             <div id="hud">
@@ -119,8 +85,9 @@
                 </ul>
             </div>
         </div>
-
+        <div class="mt-5" id="footer"></div>
     </div>
+
 </body>
 
 </html>
@@ -131,18 +98,22 @@
 
 <script src="../js/simuladorAvion.js"></script>
 
-<div id="footer"></div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        fetch('layouts/footer.html')
+        fetch('../layouts/footer.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('No se pudo cargar layouts/footer.html');
                 }
                 return response.text();
             })
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+
+                // 👇 IMPORTANTE: ejecutar después de cargar el footer
+                document.getElementById('year').textContent =
+                    new Date().getFullYear();
             })
             .catch(error => {
                 console.error('Error al cargar layouts/footer.html:', error);
