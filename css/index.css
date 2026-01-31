@@ -41,12 +41,81 @@
 
 
 
+
+
+
+
+.carousel-item {
+    position: relative;
+}
+
+/* Contenedor del texto */
+.timeline-overlay {
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    max-width: 420px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    padding: 25px 30px;
+    border-radius: 16px;
+    z-index: 2;
+    backdrop-filter: blur(6px);
+}
+
+/* Año */
+.timeline-year {
+    font-size: 34px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Título */
+.timeline-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Texto */
+.timeline-text {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+    .timeline-overlay {
+        right: 5%;
+        bottom: 10%;
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .timeline-year {
+        font-size: 26px;
+    }
+
+    .timeline-title {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
 /* diseño skills */
 
 .skills-card {
     border-radius: 20px;
     background-color: #f8f9fa;
-   /* border: none; */
+    /* border: none; */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
