@@ -1,85 +1,193 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/welcome.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="profile-card shadow-lg bg-white p-4">
-    <div id="header"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch('layouts/header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar layouts/header.html');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Error al cargar layouts/header.html:', error);
-                });
-        });
-    </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos — Pablo Andres Aroca</title>
+    <meta name="description" content="Proyectos interactivos y juegos desarrollados por Pablo Andres Aroca Garcia.">
+    <link rel="icon" type="image/x-icon" href="img/cv.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <style>
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
 
-    <h5 class="text-center mt-5 mb-4"><strong>Juegos</strong></h5>
+        .game-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.04), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
 
-    <div class="row">
+        .game-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-hover);
+            text-decoration: none;
+        }
 
-        <div class="col-md-6">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2;  max-width: 50rem;">
-                <div class="card-body">
-                    <a href="juegos/avionManera.html" class="d-flex align-items-center text-decoration-none"
-                        data-toggle="popover" data-trigger="hover" data-content="Personaliza tu avión">
-                        <img src="img/PersonalizaAvion.png" height="50" width="50" alt="Personaliza tu avión"
-                            class="me-3 rounded" />
-                        <span class="text-dark fs-5">Personaliza tu avión</span>
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .game-card:hover .game-icon-wrap {
+            border-color: var(--accent-line);
+            box-shadow: 0 0 16px var(--accent-glow);
+        }
+
+        .game-icon-wrap img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-label {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 6px;
+            padding: 2px 8px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .game-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 4px;
+            transition: color var(--transition);
+        }
+
+        .game-card:hover .game-title {
+            color: var(--accent);
+        }
+
+        .game-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+        }
+
+        .game-arrow {
+            color: var(--text-muted);
+            font-size: 16px;
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+
+        .game-card:hover .game-arrow {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <div id="header"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('layouts/header.html')
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(data => document.getElementById('header').innerHTML = data)
+                    .catch(() => console.error('Error cargando header'));
+            });
+        </script>
+
+        <section style="padding-top: 60px; padding-bottom: 40px;">
+            <p class="section-title">Proyectos Interactivos</p>
+            <p class="section-subtitle">// games.filter(g => g.builtBy === 'pablo')</p>
+            <div class="section-divider"></div>
+
+            <div class="row g-4">
+
+                <!-- Personaliza tu avión -->
+                <div class="col-lg-6">
+                    <a href="juegos/avionManera.html" class="game-card">
+                        <div class="game-icon-wrap">
+                            <img src="img/PersonalizaAvion.png" alt="Personaliza tu avión" />
+                        </div>
+                        <div class="game-info">
+                            <span class="game-label">interactive · canvas</span>
+                            <p class="game-title">Personaliza tu avión</p>
+                            <p class="game-desc">Diseña y personaliza tu propio avión</p>
+                        </div>
+                        <i class="fa fa-arrow-right game-arrow"></i>
                     </a>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2;  max-width: 50rem;">
-                <div class="card-body">
-                    <a href="juegos/simuladorAvion.html" class="d-flex align-items-center text-decoration-none"
-                        data-toggle="popover" data-trigger="hover" data-content="Simulador de avión">
-                        <img src="img/SimuladorAvion.png" height="50" width="50" alt="Simulador de avión"
-                            class="me-3 rounded" />
-                        <span class="text-dark fs-5">Simulador de avión</span>
+                <!-- Simulador de avión -->
+                <div class="col-lg-6">
+                    <a href="juegos/simuladorAvion.html" class="game-card">
+                        <div class="game-icon-wrap">
+                            <img src="img/SimuladorAvion.png" alt="Simulador de avión" />
+                        </div>
+                        <div class="game-info">
+                            <span class="game-label">simulation · js</span>
+                            <p class="game-title">Simulador de avión</p>
+                            <p class="game-desc">Controla y pilota tu propio avión</p>
+                        </div>
+                        <i class="fa fa-arrow-right game-arrow"></i>
                     </a>
                 </div>
-            </div>
-        </div>
 
+            </div>
+        </section>
+
+        <div class="mt-4" id="footer"></div>
     </div>
 
-    <div class="mt-5" id="footer"></div>
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('layouts/footer.html')
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(html => {
+                    document.getElementById('footer').innerHTML = html;
+                    const el = document.getElementById('year');
+                    if (el) el.textContent = new Date().getFullYear();
+                })
+                .catch(() => console.error('Error cargando footer'));
+        });
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
 
-<script src="js/bootstrap.bundle.min.js"></script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('layouts/footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar layouts/footer.html');
-                }
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById('footer').innerHTML = html;
-
-                // 👇 IMPORTANTE: ejecutar después de cargar el footer
-                document.getElementById('year').textContent =
-                    new Date().getFullYear();
-            })
-            .catch(error => {
-                console.error('Error al cargar layouts/footer.html:', error);
-            });
-    });
-</script>
+</html>

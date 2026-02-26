@@ -1,35 +1,154 @@
-<link rel="stylesheet" href="../css/welcome.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/welcome.css">
 
-<!-- NAVBAR dentro de la card -->
-<nav class="navbar navbar-expand-lg mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-                style="width: 40px; height: 40px">
-                <strong>P</strong>
+<style>
+    /* ---- Sticky Navbar (dark glass) ---- */
+    .nav-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(10, 13, 20, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 24px;
+        margin: 0 -24px;
+    }
+
+    .navbar {
+        padding: 14px 0;
+        background: transparent !important;
+    }
+
+    /* Brand */
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+    }
+
+    .brand-icon {
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 500;
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: -1px;
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+        flex-shrink: 0;
+    }
+
+    .brand-text {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--text-primary);
+        letter-spacing: -0.3px;
+    }
+
+    .brand-role {
+        display: block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 10px;
+        color: var(--accent);
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        margin-top: 1px;
+    }
+
+    /* Toggler */
+    .navbar-toggler {
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 10px;
+        background: transparent;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .navbar-toggler-icon-custom {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+
+    /* Mobile collapse */
+    .navbar-collapse {
+        margin-top: 0;
+    }
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<div class="nav-wrapper">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid px-0">
+            <a class="navbar-brand" href="index.html">
+                <div class="brand-icon">&lt;/&gt;</div>
+                <div>
+                    <span class="brand-text">Pablo Andres</span>
+                    <span class="brand-role">Software Developer</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Menú">
+                <i class="fa fa-bars navbar-toggler-icon-custom"></i>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="navbar-nav mb-2 mb-lg-0 align-items-lg-center gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fa fa-house me-1" style="font-size:12px;"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="estudios.html">
+                            <i class="fa fa-graduation-cap me-1" style="font-size:12px;"></i> Estudios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="experiencia.html">
+                            <i class="fa fa-briefcase me-1" style="font-size:12px;"></i> Experiencia
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="juegos.html">
+                            <i class="fa fa-gamepad me-1" style="font-size:12px;"></i> Juegos
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="doc/cv 2025.pdf" download class="btn btn-outline-primary btn-sm px-3">
+                            <i class="fa fa-download me-1"></i> CV
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <span class="ms-2 fw-bold text-dark">Pablo Andres</span>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-list text-primary fs-2"></i>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="index.html">Home</a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="estudios.html">Estudios</a>
-                </li>
-                <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
-                        href="experiencia.html">Experiencia</a></li>
-                <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="juegos.html">Juegos</a></li>
-            </ul>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>

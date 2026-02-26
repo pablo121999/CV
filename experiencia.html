@@ -1,107 +1,229 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/welcome.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="profile-card shadow-lg bg-white p-4">
-    <div id="header"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia — Pablo Andres Aroca</title>
+    <meta name="description" content="Experiencia laboral de Pablo Andres Aroca Garcia, Desarrollador Web.">
+    <link rel="icon" type="image/x-icon" href="img/cv.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <style>
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 28px;
+            height: 100%;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), transparent);
+            border-radius: 2px;
+        }
+
+        .exp-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border-hover);
+        }
+
+        .exp-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin-bottom: 14px;
+        }
+
+        .exp-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .exp-company {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .exp-company::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .exp-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .exp-list li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .exp-list li:last-child {
+            border-bottom: none;
+        }
+
+        .exp-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 11px;
+        }
+
+        .current-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            padding: 2px 8px;
+            margin-left: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .current-tag::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-green 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-green {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <div id="header"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('layouts/header.html')
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(data => document.getElementById('header').innerHTML = data)
+                    .catch(() => console.error('Error cargando header'));
+            });
+        </script>
+
+        <section style="padding-top: 60px; padding-bottom: 40px;">
+            <p class="section-title">Experiencia Profesional</p>
+            <p class="section-subtitle">// career.experience.forEach(job => renderCard(job))</p>
+            <div class="section-divider"></div>
+
+            <div class="row g-4">
+
+                <!-- Nexura -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="exp-card">
+                        <span class="exp-badge">01/2023 — Presente <span class="current-tag">Actual</span></span>
+                        <h5 class="exp-title">Desarrollador Web</h5>
+                        <p class="exp-company">Nexura Internacional</p>
+                        <ul class="exp-list">
+                            <li>Desarrollo modular con Laravel y Platform usando PHP, JavaScript, HTML5, CSS y MySQL.
+                            </li>
+                            <li>Implementación del patrón de arquitectura MVC (Modelo-Vista-Controlador).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BIOSALC -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="exp-card">
+                        <span class="exp-badge">02/2023 — 06/2023</span>
+                        <h5 class="exp-title">Desarrollador Junior</h5>
+                        <p class="exp-company">BIOSALC CORPORATION</p>
+                        <ul class="exp-list">
+                            <li>Desarrollo de aplicativos móviles en Pascal (Embarcadero Delphi) con MySQL, Oracle SQL y
+                                SQL Server.</li>
+                            <li>Soporte al cliente, consultas técnicas y diseño de interfaces de usuario.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ITFIP -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="exp-card">
+                        <span class="exp-badge">01/2021 — 07/2021</span>
+                        <h5 class="exp-title">Desarrollador Web Junior</h5>
+                        <p class="exp-company">ITFIP</p>
+                        <ul class="exp-list">
+                            <li>Módulos de fisioterapia, antropometría y calorimetría para seguimiento deportivo.</li>
+                            <li>Stack: PHP, HTML5, Bootstrap, JavaScript, MySQL.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="mt-4" id="footer"></div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('layouts/header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar layouts/header.html');
-                    }
-                    return response.text();
+            fetch('layouts/footer.html')
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(html => {
+                    document.getElementById('footer').innerHTML = html;
+                    const el = document.getElementById('year');
+                    if (el) el.textContent = new Date().getFullYear();
                 })
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Error al cargar layouts/header.html:', error);
-                });
+                .catch(() => console.error('Error cargando footer'));
         });
     </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
 
-    <h5 class="text-center mt-5 mb-4"><strong>Experiencia</strong></h5>
-
-    <div class="row">
-
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Desarrollador Web</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nexura Internacional</h6>
-                    <p class="card-text">01/07/2023 - Presente</p>
-                    <ul>
-                        <li>Desarrollar siguiendo el paradigma de programación modular, utilizando los frameworks
-                            Laravel y
-                            Platform con PHP, JavaScript, HTML5, CSS y MySQL, e implementando el patrón de arquitectura
-                            de
-                            software MVC (Modelo-Vista-Controlador).</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Desarrollador Junior</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">BIOSALC CORPORATION</h6>
-                    <p class="card-text">01/02/2023 - 31/06/2023</p>
-                    <ul>
-                        <li>Experiencia en el desarrollo de pantallas de aplicativos móviles utilizando el lenguaje de
-                            programación Pascal (IDE Embarcadero Delphi) y base de datos MySQL (Oracle SQL, SQL Server)
-                        </li>
-                        <li>Brindar soporte al cliente, atender sus consultas y problemas de manera efectiva. Excelentes
-                            habilidades técnicas en programación y diseño de interfaces.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Desarrollador Web Junior</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">ITFIP</h6>
-                    <p class="card-text">01/01/2021 - 31/07/2021</p>
-                    <ul>
-                        <li>Desarrollar Modulos de fisioterapia, antopometria y calorimentria para el cuidado del estado
-                            fisico de los deportistas.</li>
-                        <li>Lenguajes utilizados PHP, HTML5, Bootstrap, JavaScript, MySQL</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="mt-5" id="footer"></div>
-</div>
-
-<script src="js/bootstrap.bundle.min.js"></script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('layouts/footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar layouts/footer.html');
-                }
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById('footer').innerHTML = html;
-
-                // 👇 IMPORTANTE: ejecutar después de cargar el footer
-                document.getElementById('year').textContent =
-                    new Date().getFullYear();
-            })
-            .catch(error => {
-                console.error('Error al cargar layouts/footer.html:', error);
-            });
-    });
-</script>
+</html>

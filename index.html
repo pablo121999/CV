@@ -4,196 +4,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cv</title>
+    <title>Pablo Andres Aroca — Software Developer</title>
+    <meta name="description"
+        content="Portafolio de Pablo Andres Aroca Garcia, Ingeniero de Sistemas especializado en desarrollo web con PHP (Laravel), JavaScript, HTML, CSS y MySQL.">
     <link rel="icon" type="image/x-icon" href="img/cv.png">
-    <link rel="stylesheet" href="css/welcome.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-    <div class="profile-card shadow-lg bg-white p-4">
+    <div class="profile-card">
 
+        <!-- Header -->
         <div id="header"></div>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 fetch('layouts/header.html')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('No se pudo cargar layouts/header.html');
-                        }
-                        return response.text();
-                    })
-                    .then(data => {
-                        document.getElementById('header').innerHTML = data;
-                    })
-                    .catch(error => {
-                        console.error('Error al cargar layouts/header.html:', error);
-                    });
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(data => { document.getElementById('header').innerHTML = data; })
+                    .catch(() => console.error('Error cargando header'));
             });
         </script>
 
-        <link rel="stylesheet" href="css/index.css">
+        <!-- ===== HERO ===== -->
+        <section class="hero-section" style="padding: 80px 0 60px;">
+            <div class="d-flex flex-wrap align-items-center gap-5 justify-content-center justify-content-lg-start">
 
-        <!-- Contenido del perfil -->
-        <div class="d-flex flex-wrap align-items-center justify-content-center text-center text-md-start"
-            style="margin-top: 70px;">
-            <div class="me-md-5 mb-4 mb-md-0">
-                <img src="img/FotoPerfil.jpg" alt="Pablo" class="profile-img rounded-circle shadow"
-                    style="width: 336px; height: 336px; object-fit: cover; border: 10px solid white;" />
-            </div>
-            <div style="max-width: 500px">
-                <h2 class="fw-bold mb-2">Pablo Andres Aroca Garcia</h2>
-                <p class="text-muted mb-1"><strong>Ingeniero de sistemas</strong></p>
-                <p class="text-muted">
-                    Cuento con sólidos conocimientos y experiencia en desarrollo de software, así como habilidades
-                    para
-                    diseñar, analizar, integrar y gestionar sistemas de información alineados con las necesidades de
-                    las
-                    organizaciones.
-                    Actualmente, centro mi carrera en el desarrollo web, especializándome en tecnologías como PHP
-                    (Laravel), JavaScript, HTML, CSS y MySQL. Me apasiona crear soluciones funcionales, escalables y
-                    eficientes. Estoy en constante aprendizaje, con el objetivo de fortalecer mis competencias y
-                    aportar
-                    valor en cada proyecto en el que participo.
-                </p>
-                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mt-4">
-                    <a href="doc/cv 2025.pdf" download class="btn btn-outline-primary">Download
-                        CV</a>
-
-                    <div class="mt-3">
-                        <a href="mailto:pabloaroca78@gmail.com" class="me-3 text-danger text-decoration-none"
-                            title="Enviar correo a Pablo Andrés" aria-label="Correo">
-                            <i class="fab fa-google fa-lg"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/pabloaroca/" class="me-3 text-primary text-decoration-none"
-                            title="Perfil de LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in fa-lg"></i>
-                        </a>
-                        <a href="https://github.com/pablo121999" class="me-3 text-dark text-decoration-none"
-                            title="Perfil de GitHub" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="fab fa-github fa-lg"></i>
-                        </a>
-                        <a href="https://wa.me/573227893926" class="text-success text-decoration-none"
-                            title="Chatear por WhatsApp" target="_blank" rel="noopener noreferrer"
-                            aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp fa-lg"></i>
-                        </a>
+                <!-- Avatar -->
+                <div class="hero-avatar" style="flex-shrink:0;">
+                    <div style="position:relative; display:inline-block;">
+                        <div class="avatar-ring"></div>
+                        <img src="img/FotoPerfil.jpg" alt="Pablo Andres Aroca" class="profile-img"
+                            style="width:200px;height:200px;position:relative;z-index:1;" />
+                        <div class="online-badge"></div>
                     </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <h2 class="text-center  mt-5" style="margin-bottom: 30px;"><strong>Mi línea de tiempo</strong></h2>
-
-        <div class="col-md-12">
-            <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-custom rounded-carousel"
-                data-bs-touch="false" data-bs-interval="false">
-
-                <div class="carousel-inner">
-
-                    <!-- 1999 -->
-                    <div class="carousel-item active">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">1999</span>
-                            <p class="timeline-title">Nacimiento</p>
-                            <p class="timeline-text">
-                                El 3 de diciembre de 1999 nací en un municipio llamado Prado,
-                                en el departamento del Tolima.
-                            </p>
-                        </div>
-                        <img src="img/nacimiento.png" class="d-block w-100 carousel-img" alt="Nacimiento">
-                    </div>
-
-                    <!-- 2016 -->
-                    <div class="carousel-item">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">2016</span>
-                            <p class="timeline-title">Graduación de bachillerato</p>
-                            <p class="timeline-text">
-                                Este año me gradué como bachiller en el colegio Luis Felipe Pinto
-                                de Prado, Tolima.
-                            </p>
-                        </div>
-                        <img src="img/bachiller.png" class="d-block w-100 carousel-img" alt="Bachillerato">
-                    </div>
-
-                    <!-- 2019 -->
-                    <div class="carousel-item">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">2019</span>
-                            <p class="timeline-title">Técnico Profesional en Soluciones Web</p>
-                            <p class="timeline-text">
-                                Me gradué como técnico profesional en soluciones web
-                                en el Instituto Tolimense de Formación Técnica Profesional.
-                            </p>
-                        </div>
-                        <img src="img/tecnico.png" class="d-block w-100 carousel-img" alt="Técnico profesional">
-                    </div>
-
-                    <!-- 2021 -->
-                    <div class="carousel-item">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">2021</span>
-                            <p class="timeline-title">Tecnólogo en Gestión Informática</p>
-                            <p class="timeline-text">
-                                Obtuve el título de Tecnólogo en Gestión Informática
-                                en el Instituto Tolimense de Formación Técnica Profesional.
-                            </p>
-                        </div>
-                        <img src="img/tecnologo.png" class="d-block w-100 carousel-img" alt="Tecnólogo">
-                    </div>
-
-                    <!-- 2022 -->
-                    <div class="carousel-item">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">2022</span>
-                            <p class="timeline-title">Ingeniero de Sistemas</p>
-                            <p class="timeline-text">
-                                Obtuve el título de Ingeniero de Sistemas
-                                en el Instituto Tolimense de Formación Técnica Profesional.
-                            </p>
-                        </div>
-                        <img src="img/IngSistemas.png" class="d-block w-100 carousel-img" alt="Ingeniero de sistemas">
-                    </div>
-
-                    <!-- 2024 -->
-                    <div class="carousel-item">
-                        <div class="timeline-overlay">
-                            <span class="timeline-year">2024</span>
-                            <p class="timeline-title">Nacimiento de mi hijo</p>
-                            <p class="timeline-text">
-                                Este año nació mi hijo Kylian el 25 de abril de 2024.
-                            </p>
-                        </div>
-                        <img src="img/nacimientoKylian.jpg" class="d-block w-100 carousel-img" alt="Nacimiento hijo">
-                    </div>
-
                 </div>
 
-                <!-- Controles -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
+                <!-- Info -->
+                <div style="max-width:560px;">
+                    <div class="hero-tag">
+                        <span class="hero-tag-dot"></span>
+                        Disponible para trabajar
+                    </div>
+                    <h1 class="hero-name">Pablo Andres<br><span class="hero-name-accent">Aroca Garcia</span></h1>
+                    <p class="hero-role"><span class="hero-role-bracket">&lt;</span>Ingeniero de Sistemas<span
+                            class="hero-role-bracket"> /&gt;</span></p>
+                    <p class="hero-bio">
+                        Desarrollador de software con sólida experiencia en diseño, análisis e integración de
+                        sistemas. Especializado en <strong style="color:var(--accent);">Desarrollo de software</strong>,
+                        Apasionado por crear soluciones funcionales, escalables y eficientes.
+                    </p>
 
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-
+                    <!-- CTA + Socials -->
+                    <div class="hero-actions">
+                        <a href="doc/cv 2025.pdf" download class="btn btn-outline-primary">
+                            <i class="fa fa-download me-2"></i>Descargar CV
+                        </a>
+                        <div class="hero-socials">
+                            <a href="mailto:pabloaroca78@gmail.com" class="social-link-hero" title="Email">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pabloaroca/" class="social-link-hero" title="LinkedIn"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/pablo121999" class="social-link-hero" title="GitHub"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://wa.me/573227893926" class="social-link-hero" title="WhatsApp"
+                                target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
+        <!-- ===== TIMELINE ===== -->
+        <section style="margin-bottom: 64px;">
+            <p class="section-title">Mi línea de tiempo</p>
+            <p class="section-subtitle">// historia.personal</p>
+            <div class="section-divider"></div>
 
+            <div class="col-md-12">
+                <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-custom" data-bs-touch="false"
+                    data-bs-interval="false">
+                    <div class="carousel-inner">
 
-        <div class="col-md-12 mt-5 mb-5">
-            <h5 class="text-center fw-bold mb-4">Skills</h5>
+                        <!-- 1999 -->
+                        <div class="carousel-item active">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">1999</span>
+                                <p class="timeline-title">Nacimiento</p>
+                                <p class="timeline-text">El 3 de diciembre de 1999 nací en Prado, Tolima.</p>
+                            </div>
+                            <img src="img/nacimiento.png" class="d-block w-100 carousel-img" alt="Nacimiento">
+                        </div>
+
+                        <!-- 2016 -->
+                        <div class="carousel-item">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">2016</span>
+                                <p class="timeline-title">Graduación de bachillerato</p>
+                                <p class="timeline-text">Me gradué como bachiller en el colegio Luis Felipe Pinto de
+                                    Prado, Tolima.</p>
+                            </div>
+                            <img src="img/bachiller.png" class="d-block w-100 carousel-img" alt="Bachillerato">
+                        </div>
+
+                        <!-- 2019 -->
+                        <div class="carousel-item">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">2019</span>
+                                <p class="timeline-title">Técnico Profesional en Soluciones Web</p>
+                                <p class="timeline-text">Técnico profesional en el Instituto Tolimense de Formación
+                                    Técnica Profesional.</p>
+                            </div>
+                            <img src="img/tecnico.png" class="d-block w-100 carousel-img" alt="Técnico profesional">
+                        </div>
+
+                        <!-- 2021 -->
+                        <div class="carousel-item">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">2021</span>
+                                <p class="timeline-title">Tecnólogo en Gestión Informática</p>
+                                <p class="timeline-text">Título de Tecnólogo en Gestión Informática en el ITFIP.</p>
+                            </div>
+                            <img src="img/tecnologo.png" class="d-block w-100 carousel-img" alt="Tecnólogo">
+                        </div>
+
+                        <!-- 2022 -->
+                        <div class="carousel-item">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">2022</span>
+                                <p class="timeline-title">Ingeniero de Sistemas</p>
+                                <p class="timeline-text">Título de Ingeniero de Sistemas en el ITFIP.</p>
+                            </div>
+                            <img src="img/IngSistemas.png" class="d-block w-100 carousel-img"
+                                alt="Ingeniero de sistemas">
+                        </div>
+
+                        <!-- 2024 -->
+                        <div class="carousel-item">
+                            <div class="timeline-overlay">
+                                <span class="timeline-year">2024</span>
+                                <p class="timeline-title">Nacimiento de mi hijo</p>
+                                <p class="timeline-text">El 25 de abril nació Kylian, el mayor regalo de mi vida.</p>
+                            </div>
+                            <img src="img/nacimientoKylian.jpg" class="d-block w-100 carousel-img"
+                                alt="Nacimiento hijo">
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                        data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <section class="col-md-12 mb-5">
+            <p class="section-title">Stack Tecnológico</p>
+            <p class="section-subtitle">// skills.map(s => s.level === 'pro')</p>
+            <div class="section-divider"></div>
 
             <div class="card skills-card">
-                <div class="card-body">
-                    <div class="row text-center">
+                <div class="card-body p-4">
+                    <div class="row text-center g-2">
 
                         <div class="col-6 col-md-3 skill-item">
                             <i class="fa-brands fa-php"></i>
@@ -217,12 +204,12 @@
 
                         <div class="col-6 col-md-3 skill-item">
                             <i class="fab fa-css3-alt"></i>
-                            <span>CSS</span>
+                            <span>CSS3</span>
                         </div>
 
                         <div class="col-6 col-md-3 skill-item">
                             <i class="fab fa-html5"></i>
-                            <span>HTML</span>
+                            <span>HTML5</span>
                         </div>
 
                         <div class="col-6 col-md-3 skill-item">
@@ -230,34 +217,30 @@
                             <span>MySQL</span>
                         </div>
 
+                        <div class="col-6 col-md-3 skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
+        <!-- Footer -->
         <div id="footer"></div>
-
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             fetch('layouts/footer.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar layouts/footer.html');
-                    }
-                    return response.text();
-                })
+                .then(r => r.ok ? r.text() : Promise.reject())
                 .then(html => {
                     document.getElementById('footer').innerHTML = html;
-
-                    // 👇 IMPORTANTE: ejecutar después de cargar el footer
-                    document.getElementById('year').textContent =
-                        new Date().getFullYear();
+                    const el = document.getElementById('year');
+                    if (el) el.textContent = new Date().getFullYear();
                 })
-                .catch(error => {
-                    console.error('Error al cargar layouts/footer.html:', error);
-                });
+                .catch(() => console.error('Error cargando footer'));
         });
     </script>
 

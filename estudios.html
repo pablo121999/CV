@@ -1,95 +1,177 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="es">
 
-<link rel="stylesheet" href="css/welcome.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudios — Pablo Andres Aroca</title>
+    <meta name="description" content="Formación académica de Pablo Andres Aroca Garcia, Ingeniero de Sistemas.">
+    <link rel="icon" type="image/x-icon" href="img/cv.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <style>
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 28px;
+            height: 100%;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
 
-<div class="profile-card shadow-lg bg-white p-4">
-    <div id="header"></div>
+        .edu-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .edu-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .edu-card:hover::after {
+            opacity: 1;
+        }
+
+        .edu-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 500;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 6px;
+            padding: 3px 10px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .edu-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .edu-institution {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.5;
+        }
+
+        .edu-level-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 10px;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+        <div id="header"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('layouts/header.html')
+                    .then(r => r.ok ? r.text() : Promise.reject())
+                    .then(data => document.getElementById('header').innerHTML = data)
+                    .catch(() => console.error('Error cargando header'));
+            });
+        </script>
+
+        <section style="padding-top: 60px; padding-bottom: 40px;">
+            <p class="section-title">Formación Académica</p>
+            <p class="section-subtitle">// education.sort((a, b) => b.year - a.year)</p>
+            <div class="section-divider"></div>
+
+            <div class="row g-4">
+
+                <!-- Ingeniería -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="edu-card">
+                        <span class="edu-level-badge">Pregrado</span>
+                        <div class="edu-icon"><i class="fa fa-laptop-code"></i></div>
+                        <span class="edu-year">2022</span>
+                        <h5 class="edu-title">Ingeniero de Sistemas</h5>
+                        <p class="edu-institution">Instituto Tolimense de Formación Técnica Profesional (ITFIP)</p>
+                    </div>
+                </div>
+
+                <!-- Tecnólogo -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="edu-card">
+                        <span class="edu-level-badge">Tecnológico</span>
+                        <div class="edu-icon"><i class="fa fa-server"></i></div>
+                        <span class="edu-year">2021</span>
+                        <h5 class="edu-title">Tecnólogo en Gestión Informática</h5>
+                        <p class="edu-institution">Instituto Tolimense de Formación Técnica Profesional (ITFIP)</p>
+                    </div>
+                </div>
+
+                <!-- Técnico -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="edu-card">
+                        <span class="edu-level-badge">Técnico</span>
+                        <div class="edu-icon"><i class="fa fa-code"></i></div>
+                        <span class="edu-year">2019</span>
+                        <h5 class="edu-title">Técnico Profesional en Soluciones Web</h5>
+                        <p class="edu-institution">Instituto Tolimense de Formación Técnica Profesional (ITFIP)</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="mt-4" id="footer"></div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            fetch('layouts/header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('No se pudo cargar layouts/header.html');
-                    }
-                    return response.text();
+            fetch('layouts/footer.html')
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(html => {
+                    document.getElementById('footer').innerHTML = html;
+                    const el = document.getElementById('year');
+                    if (el) el.textContent = new Date().getFullYear();
                 })
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Error al cargar layouts/header.html:', error);
-                });
+                .catch(() => console.error('Error cargando footer'));
         });
     </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
 
-    <h5 class="text-center mt-5 mb-4"><strong>Estudios</strong></h5>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Ingeniero de Sistemas</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                    <p class="card-text">
-                        2022
-                    </p>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2; max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Tecnólogo en Gestión Informática</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                    <p class="card-text">
-                        2021
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card  mb-3" style="border-radius: 20px; background-color: #f2f2f2;  max-width: 50rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Técnico profesional en soluciones web</strong></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Instituto Tolimense de Formación Técnica Profesional.</h6>
-                    <p class="card-text">
-                        2019
-                    </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="mt-5" id="footer"></div>
-</div>
-
-<script src="js/bootstrap.bundle.min.js"></script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('layouts/footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar layouts/footer.html');
-                }
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById('footer').innerHTML = html;
-
-                // 👇 IMPORTANTE: ejecutar después de cargar el footer
-                document.getElementById('year').textContent =
-                    new Date().getFullYear();
-            })
-            .catch(error => {
-                console.error('Error al cargar layouts/footer.html:', error);
-            });
-    });
-</script>
+</html>

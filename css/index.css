@@ -1,152 +1,210 @@
-/* Altura fija del carrusel */
+/* =========================================
+   index.css — Timeline + Skills (dark theme)
+   ========================================= */
+
+/* --- Timeline Carousel --- */
 .carousel-custom {
-    height: 600px;
+    height: 500px;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* Todas las slides misma altura */
 .carousel-custom .carousel-item {
-    height: 600px;
+    height: 500px;
 }
 
-/* Imágenes */
 .carousel-img {
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.6) saturate(0.85);
 }
 
-/* 🔥 Borde redondeado REAL */
-.rounded-carousel {
-    border-radius: 20px;
-    overflow: hidden;
-    /* IMPORTANTÍSIMO */
-}
-
-/* Botones */
+/* Controls */
 .carousel-control-prev,
 .carousel-control-next {
-    width: 50px;
-    height: 50px;
-    background-color: #000;
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    bottom: auto !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px;
+    background: rgba(15, 22, 35, 0.65) !important;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     opacity: 1;
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    z-index: 5;
+}
+
+.carousel-control-prev {
+    left: 14px;
+}
+
+.carousel-control-next {
+    right: 14px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
 }
 
 .carousel-control-prev:focus,
 .carousel-control-next:focus {
     outline: none;
-    box-shadow: none;
+    box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-
-
-
-
-/* timeline  */
-
+/* Overlay */
 .carousel-item {
     position: relative;
 }
 
-/* Contenedor del texto */
 .timeline-overlay {
     position: absolute;
-    bottom: 15%;
-    right: 10%;
-    max-width: 420px;
-    background: rgba(0, 0, 0, 0.55);
-    color: #fff;
-    padding: 25px 30px;
-    border-radius: 16px;
+    bottom: 10%;
+    right: 5%;
+    max-width: 400px;
+    background: rgba(10, 13, 20, 0.75);
+    color: var(--text-primary);
+    padding: 24px 28px;
+    border-radius: 14px;
     z-index: 2;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-hover);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* Año */
 .timeline-year {
-    font-size: 34px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: 800;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+    letter-spacing: -2px;
 }
 
-/* Título */
 .timeline-title {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
-/* Texto */
 .timeline-text {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-secondary);
     margin: 0;
 }
 
-
-
+/* Mobile */
 @media (max-width: 768px) {
+
+    .carousel-custom,
+    .carousel-custom .carousel-item {
+        height: 380px;
+    }
+
     .timeline-overlay {
-        right: 5%;
-        bottom: 10%;
-        max-width: 90%;
-        padding: 20px;
+        right: 4%;
+        bottom: 8%;
+        max-width: 88%;
+        padding: 18px;
     }
 
     .timeline-year {
-        font-size: 26px;
+        font-size: 30px;
     }
 
     .timeline-title {
-        font-size: 16px;
+        font-size: 15px;
     }
 }
 
 
-
-
-
-
-
-/* diseño skills */
-
+/* =========================================
+   Skills Section
+   ========================================= */
 .skills-card {
-    border-radius: 20px;
-    background-color: #f8f9fa;
-    /* border: none; */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: var(--card-radius);
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Override Bootstrap's default card white bg on hover items */
+.skills-card .card-body {
+    background: transparent;
 }
 
 .skill-item {
-    padding: 20px 10px;
-    transition: all 0.3s ease;
+    padding: 24px 12px;
+    border-radius: 12px;
+    transition: all var(--transition);
+    cursor: default;
+    position: relative;
+}
+
+.skill-item::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: border-color var(--transition);
+}
+
+.skill-item:hover::before {
+    border-color: var(--border-hover);
 }
 
 .skill-item i {
-    font-size: 32px;
-    margin-bottom: 8px;
+    font-size: 30px;
+    margin-bottom: 10px;
     display: block;
-    color: #495057;
+    color: var(--text-muted);
+    transition: color var(--transition), text-shadow var(--transition);
 }
 
 .skill-item span {
     font-weight: 600;
-    font-size: 14px;
-    color: #212529;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: block;
+    transition: color var(--transition);
 }
 
 .skill-item small {
     font-weight: 400;
-    color: #6c757d;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .skill-item:hover {
-    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
 }
 
 .skill-item:hover i {
-    color: #0d6efd;
-    /* azul Bootstrap */
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.skill-item:hover span {
+    color: var(--text-primary);
 }
