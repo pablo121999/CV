@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Pablo Andres Aroca Garcia | Software Developer</title>
+    <meta name="description"
+        content="Hoja de vida profesional de Pablo Andres Aroca Garcia, Ingeniero de Sistemas y Desarrollador Full Stack.">
+    <link rel="icon" type="image/x-icon" href="img/cv.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ============================================
+           DESIGN TOKENS — matching portfolio palette
+        ============================================ */
+        :root {
+            --bg: #0b0f1a;
+            --bg-card: #111827;
+            --sidebar-bg: #0f1623;
+            --accent: #3b82f6;
+            --accent-dim: #1d4ed8;
+            --accent-glow: rgba(59, 130, 246, .15);
+            --accent-line: rgba(59, 130, 246, .45);
+            --text-1: #e8eaf0;
+            --text-2: #94a3b8;
+            --text-3: #64748b;
+            --border: rgba(59, 130, 246, .14);
+            --green: #22c55e;
+        }
+
+        /* ============================================
+           BASE RESET
+        ============================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 10pt;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           PAGE LAYOUT  (A4 — 210 × 297 mm)
+        ============================================ */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 68mm 1fr;
+            background: var(--bg-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle top accent bar */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #60a5fa, transparent);
+            z-index: 10;
+        }
+
+        /* ============================================
+           SIDEBAR
+        ============================================ */
+        .sidebar {
+            background: var(--sidebar-bg);
+            padding: 36px 22px 36px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            border-right: 1px solid var(--border);
+        }
+
+        /* PHOTO */
+        .sidebar-photo-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-photo {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-line);
+            box-shadow: 0 0 0 5px var(--accent-glow);
+        }
+
+        .sidebar-name {
+            font-size: 14pt;
+            font-weight: 800;
+            color: var(--text-1);
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .sidebar-name span {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5pt;
+            color: var(--text-2);
+            text-align: center;
+        }
+
+        .sidebar-role b {
+            color: var(--accent);
+        }
+
+        /* AVAILABILITY BADGE */
+        .avail-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            color: var(--green);
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .25);
+            border-radius: 20px;
+            padding: 3px 10px;
+        }
+
+        .avail-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        /* SIDEBAR SECTION */
+        .sb-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sb-section-title {
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+            margin-bottom: 3px;
+        }
+
+        /* CONTACT ITEMS */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: 7.5pt;
+            color: var(--text-2);
+            line-height: 1.5;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 9pt;
+            width: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .contact-item a {
+            color: var(--text-2);
+            text-decoration: none;
+        }
+
+        /* SKILLS TECH */
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 6px;
+            padding: 3px 8px;
+            margin: 1px 0;
+        }
+
+        .skill-pill i {
+            font-size: 9pt;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        /* SOFT SKILLS */
+        .soft-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 7.5pt;
+            color: var(--text-2);
+        }
+
+        .soft-item::before {
+            content: '▸';
+            color: var(--accent);
+            font-size: 8pt;
+            flex-shrink: 0;
+        }
+
+        /* LANGUAGES */
+        .lang-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 7.5pt;
+            color: var(--text-2);
+        }
+
+        .lang-level {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5pt;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 4px;
+            padding: 1px 6px;
+        }
+
+        /* ============================================
+           MAIN CONTENT
+        ============================================ */
+        .main {
+            padding: 36px 28px 36px 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: var(--text-1);
+            letter-spacing: -0.3px;
+        }
+
+        .section-header .accent-bar {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.4;
+        }
+
+        .section-header i {
+            color: var(--accent);
+            font-size: 10pt;
+        }
+
+        /* PERFIL PROFESIONAL */
+        .profile-text {
+            font-size: 8.5pt;
+            color: var(--text-2);
+            line-height: 1.75;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-left: 3px solid var(--accent);
+            border-radius: 6px;
+            padding: 12px 14px;
+        }
+
+        /* EXPERIENCE CARDS */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exp-card {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 13px 14px;
+        }
+
+        .exp-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .exp-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--text-1);
+        }
+
+        .exp-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5pt;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 4px;
+            padding: 2px 7px;
+            white-space: nowrap;
+        }
+
+        .exp-current-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6pt;
+            color: var(--green);
+            background: rgba(34, 197, 94, .1);
+            border: 1px solid rgba(34, 197, 94, .3);
+            border-radius: 10px;
+            padding: 1px 6px;
+            margin-left: 5px;
+        }
+
+        .exp-current-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .exp-company {
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .exp-company::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .exp-desc {
+            font-size: 7.5pt;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+
+        .exp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 7px;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6pt;
+            color: var(--text-3);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+
+        /* EDUCATION */
+        .edu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .edu-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 13px;
+        }
+
+        .edu-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 13pt;
+            flex-shrink: 0;
+        }
+
+        .edu-body {
+            flex: 1;
+        }
+
+        .edu-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.5pt;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 4px;
+            padding: 1px 6px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .edu-title {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: var(--text-1);
+            margin-bottom: 2px;
+        }
+
+        .edu-institution {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            color: var(--text-3);
+        }
+
+        .edu-level {
+            font-size: 6pt;
+            color: var(--text-3);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1px 6px;
+            float: right;
+            margin-top: -2px;
+        }
+
+        /* PROJECTS */
+        .proj-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .proj-card {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 11px 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .proj-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 7px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 12pt;
+            flex-shrink: 0;
+        }
+
+        .proj-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6pt;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-line);
+            border-radius: 4px;
+            padding: 1px 5px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .proj-title {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: var(--text-1);
+            margin-bottom: 2px;
+        }
+
+        .proj-desc {
+            font-size: 7.5pt;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                background: #111827 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            .page {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            /* Ensure backgrounds print */
+            .sidebar {
+                background: #0f1623 !important;
+            }
+
+            .exp-card,
+            .edu-card,
+            .proj-card {
+                background: #0f1623 !important;
+            }
+
+            .skill-pill,
+            .exp-badge,
+            .edu-year,
+            .proj-label,
+            .avail-badge {
+                -webkit-print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- ============================================
+         SIDEBAR
+    ============================================ -->
+        <aside class="sidebar">
+
+            <!-- Photo + Name + Role -->
+            <div class="sidebar-photo-wrap">
+                <img src="img/FotoPerfil.jpg" alt="Pablo Andres Aroca Garcia" class="sidebar-photo">
+                <p class="sidebar-name">Pablo Andres<br><span>Aroca Garcia</span></p>
+                <p class="sidebar-role"><b>&lt;</b> Ingeniero de Sistemas <b>/&gt;</b></p>
+                <div class="avail-badge">
+                    <span class="avail-dot"></span>
+                    Disponible para trabajar
+                </div>
+            </div>
+
+            <!-- Datos de Contacto -->
+            <div class="sb-section">
+                <p class="sb-section-title">Contacto</p>
+                <div class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:pabloaroca78@gmail.com">pabloaroca78@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+57 322 789 3926</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin-in"></i>
+                    <a href="https://linkedin.com/in/pabloaroca">linkedin.com/in/pabloaroca</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/pablo121999">github.com/pablo121999</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <span>Cali, Valle del Cauca — Colombia</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-birthday-cake"></i>
+                    <span>03 - dic - 1999</span>
+                </div>
+            </div>
+
+            <!-- Habilidades Técnicas -->
+            <div class="sb-section">
+                <p class="sb-section-title">Stack Técnico</p>
+                <div class="skills-grid">
+                    <div class="skill-pill"><i class="fab fa-php"></i> PHP (Laravel)</div>
+                    <div class="skill-pill"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-pill"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-pill"><i class="fab fa-java"></i> Java</div>
+                    <div class="skill-pill"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill-pill"><i class="fab fa-css3-alt"></i> CSS3 / Bootstrap</div>
+                    <div class="skill-pill"><i class="fa fa-database"></i> MySQL · Oracle · SQL Server</div>
+                    <div class="skill-pill"><i class="fab fa-git-alt"></i> Git / Azure DevOps</div>
+                    <div class="skill-pill"><i class="fab fa-docker"></i> Docker (básico)</div>
+                </div>
+            </div>
+
+            <!-- Competencias Blandas -->
+            <div class="sb-section">
+                <p class="sb-section-title">Competencias</p>
+                <div class="soft-item">Trabajo en equipo</div>
+                <div class="soft-item">Orientado a resultados</div>
+                <div class="soft-item">Resolución de problemas</div>
+                <div class="soft-item">Aprendizaje continuo</div>
+                <div class="soft-item">Gestión del tiempo</div>
+                <div class="soft-item">Metodologías ágiles</div>
+            </div>
+
+            <!-- Idiomas -->
+            <div class="sb-section">
+                <p class="sb-section-title">Idiomas</p>
+                <div class="lang-item">
+                    <span>Español</span><span class="lang-level">Nativo</span>
+                </div>
+                <div class="lang-item" style="margin-top:5px;">
+                    <span>Inglés</span><span class="lang-level">Básico</span>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ============================================
+         MAIN CONTENT
+    ============================================ -->
+        <main class="main">
+
+            <!-- PERFIL PROFESIONAL -->
+            <section>
+                <div class="section-header">
+                    <i class="fa fa-user-circle"></i>
+                    <h2>Perfil Profesional</h2>
+                    <div class="accent-bar"></div>
+                </div>
+                <p class="profile-text">
+                    Desarrollador de software con sólida experiencia en el diseño, análisis e integración de sistemas.
+                    Especializado en <strong style="color:var(--text-1);">desarrollo de aplicaciones web</strong>,
+                    con enfoque en la creación de soluciones funcionales, escalables y eficientes.
+                    Apasionado por la tecnología, la optimización de procesos y la implementación de buenas prácticas
+                    que garantizan rendimiento y calidad. Experiencia trabajando con entidades públicas del Estado
+                    y empresas del sector privado, entregando productos de alto impacto bajo metodologías ágiles.
+                </p>
+            </section>
+
+            <!-- EXPERIENCIA LABORAL -->
+            <section>
+                <div class="section-header">
+                    <i class="fa fa-briefcase"></i>
+                    <h2>Experiencia Laboral</h2>
+                    <div class="accent-bar"></div>
+                </div>
+                <div class="exp-list">
+
+                    <!-- Nexura -->
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <p class="exp-title">Desarrollador Web</p>
+                            <div>
+                                <span class="exp-badge">07/2023 — Presente</span>
+                                <span class="exp-current-tag">
+                                    <span class="exp-current-dot"></span>Actual
+                                </span>
+                            </div>
+                        </div>
+                        <p class="exp-company">Nexura Internacional</p>
+                        <p class="exp-desc">
+                            Desarrollo de aplicaciones web para entidades públicas del Estado con impacto a nivel
+                            nacional,
+                            enfocadas en la optimización de procesos institucionales y mejora continua de servicios a la
+                            ciudadanía.
+                            Participación en el análisis, diseño, desarrollo e implementación de soluciones
+                            tecnológicas.
+                            Gestión del ciclo de vida del software mediante Azure DevOps y control de versiones
+                            colaborativo.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="tag">Laravel</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Azure DevOps</span>
+                        </div>
+                    </div>
+
+                    <!-- BIOSALC -->
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <p class="exp-title">Desarrollador Junior</p>
+                            <span class="exp-badge">02/2023 — 06/2023</span>
+                        </div>
+                        <p class="exp-company">BIOSALC CORPORATION</p>
+                        <p class="exp-desc">
+                            Desarrollo de aplicaciones móviles para ingenios azucareros a nivel Latinoamérica,
+                            orientadas a la optimización de procesos operativos y administrativos.
+                            Implementación de soluciones con Pascal (Embarcadero Delphi) e integración con motores de
+                            bases de datos.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="tag">Pascal / Delphi</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Oracle SQL</span>
+                            <span class="tag">SQL Server</span>
+                        </div>
+                    </div>
+
+                    <!-- UNIESPINAL -->
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <p class="exp-title">Desarrollador Web Junior</p>
+                            <span class="exp-badge">01/2021 — 07/2021</span>
+                        </div>
+                        <p class="exp-company">UNIESPINAL</p>
+                        <p class="exp-desc">
+                            Desarrollo de módulos de fisioterapia, antropometría y calorimetría para el seguimiento
+                            deportivo de atletas institucionales. Implementación del sistema completo front-end y
+                            back-end.
+                        </p>
+                        <div class="exp-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">HTML5</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- FORMACIÓN ACADÉMICA -->
+            <section>
+                <div class="section-header">
+                    <i class="fa fa-graduation-cap"></i>
+                    <h2>Formación Académica</h2>
+                    <div class="accent-bar"></div>
+                </div>
+                <div class="edu-list">
+
+                    <div class="edu-card">
+                        <div class="edu-icon"><i class="fa fa-laptop-code"></i></div>
+                        <div class="edu-body">
+                            <span class="edu-level">Pregrado</span>
+                            <span class="edu-year">2022</span>
+                            <p class="edu-title">Ingeniero de Sistemas</p>
+                            <p class="edu-institution">Institución Universitaria de El Espinal — UNIESPINAL</p>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon"><i class="fa fa-server"></i></div>
+                        <div class="edu-body">
+                            <span class="edu-level">Tecnológico</span>
+                            <span class="edu-year">2021</span>
+                            <p class="edu-title">Tecnólogo en Gestión Informática</p>
+                            <p class="edu-institution">Institución Universitaria de El Espinal — UNIESPINAL</p>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon"><i class="fa fa-code"></i></div>
+                        <div class="edu-body">
+                            <span class="edu-level">Técnico</span>
+                            <span class="edu-year">2019</span>
+                            <p class="edu-title">Técnico Profesional en Soluciones Web</p>
+                            <p class="edu-institution">Instituto Tolimense de Formación Técnica Profesional — ITFIP</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <!-- ============================================
+     FLOATING PRINT BUTTON (hidden on print)
+============================================ -->
+    <style>
+        .print-btn-wrap {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 22px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(59, 130, 246, .45);
+            transition: all .2s ease;
+        }
+
+        .print-btn:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(59, 130, 246, .55);
+        }
+
+        .print-btn.secondary {
+            background: transparent;
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .print-btn.secondary:hover {
+            background: var(--accent-glow);
+            box-shadow: none;
+        }
+
+        @media print {
+            .print-btn-wrap {
+                display: none !important;
+            }
+
+            body {
+                background: #111827 !important;
+            }
+        }
+    </style>
+
+    <div class="print-btn-wrap">
+        <button class="print-btn secondary" onclick="history.back()">
+            <i class="fa fa-arrow-left"></i> Volver
+        </button>
+        <button class="print-btn" onclick="window.print()">
+            <i class="fa fa-print"></i> Imprimir / Guardar PDF
+        </button>
+    </div>
+
+</body>
+
+</html>
