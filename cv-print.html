@@ -86,10 +86,10 @@
         ============================================ */
         .sidebar {
             background: var(--sidebar-bg);
-            padding: 36px 22px 36px 24px;
+            padding: 28px 20px 24px 20px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 20px;
             border-right: 1px solid var(--border);
         }
 
@@ -98,7 +98,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .sidebar-photo {
@@ -265,10 +265,10 @@
            MAIN CONTENT
         ============================================ */
         .main {
-            padding: 36px 28px 36px 26px;
+            padding: 28px 24px 24px 24px;
             display: flex;
             flex-direction: column;
-            gap: 26px;
+            gap: 20px;
         }
 
         /* SECTION HEADER */
@@ -630,10 +630,6 @@
                     <i class="fa fa-map-marker-alt"></i>
                     <span>Cali, Valle del Cauca — Colombia</span>
                 </div>
-                <div class="contact-item">
-                    <i class="fa fa-birthday-cake"></i>
-                    <span>03 - dic - 1999</span>
-                </div>
             </div>
 
             <!-- Habilidades Técnicas -->
@@ -812,17 +808,6 @@
                             <p class="edu-institution">Institución Universitaria de El Espinal — UNIESPINAL</p>
                         </div>
                     </div>
-
-                    <div class="edu-card">
-                        <div class="edu-icon"><i class="fa fa-code"></i></div>
-                        <div class="edu-body">
-                            <span class="edu-level">Técnico</span>
-                            <span class="edu-year">2019</span>
-                            <p class="edu-title">Técnico Profesional en Soluciones Web</p>
-                            <p class="edu-institution">Instituto Tolimense de Formación Técnica Profesional — ITFIP</p>
-                        </div>
-                    </div>
-
                 </div>
             </section>
         </main>
@@ -896,7 +881,15 @@
             <i class="fa fa-print"></i> Imprimir / Guardar PDF
         </button>
     </div>
-
+    <script>
+        window.addEventListener('load', () => {
+            if (window.location.search.includes('download=1')) {
+                setTimeout(() => {
+                    window.print();
+                }, 500); // Pequeño delay para asegurar carga de fuentes e imágenes
+            }
+        });
+    </script>
 </body>
 
 </html>
